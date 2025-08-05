@@ -20,15 +20,19 @@
 			if(rememberid != null){ // 체크박스에 체크가 된 상태로 넘어옴
 				
 			Cookie cookie = new Cookie("saveId", mid ); // 쿠키에 saveId -> tiger 값 생성
+			Cookie cookie2 = new Cookie("savePw", mpw ); // 쿠키에 savePw -> 12345 값 생성
 			cookie.setMaxAge(60*60*24*7); // 7일 동안 쿠키 유지
+			cookie2.setMaxAge(60*60*24*7);
 			response.addCookie(cookie);// 쿠키를 클라이언트에게 보내기
-			
+			response.addCookie(cookie2);
 			} else { // 체크박스 체크가 안한 상태로 로그인시 쿠키삭제
 				
-				Cookie cookie = new Cookie("saveId", "" ); // 쿠키에 saveId -> tiger 값 생성
+				Cookie cookie = new Cookie("saveId", "" ); // 쿠키에 saveId 만 생성
+				Cookie cookie2 = new Cookie("savePw", "" ); // 쿠키에 savePw 만 생성
 				cookie.setMaxAge(0); // 쿠키삭제
+				cookie2.setMaxAge(0);
 				response.addCookie(cookie);// 쿠키를 클라이언트에게 보내기
-				
+				response.addCookie(cookie2);
 			}
 			
 			session.setAttribute("user", mid);
